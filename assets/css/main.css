@@ -1,0 +1,338 @@
+.header{
+    height: 120px;
+    /* trộn màu */
+    background-image: linear-gradient(0,#fe6433, #f53e2d);
+}
+
+.header__navbar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__navbar-list {
+    list-style: none;
+    padding-left: 0 ;
+    margin-top: 4px;
+}
+
+.header__navbar-item{
+    margin: 0 8px;
+    position: relative;
+    min-height: 26px;
+}
+
+/* css đc viết ở dưới sẽ apply vào header__qr trong trường
+hợp header__navbar-item--has-qr này đc hover vào*/
+.header__navbar-item--has-qr:hover .header__qr{
+    display: block;
+}
+
+.header__navbar-item--has-notify:hover .header__notify {
+    display: block;
+}
+
+.header__navbar-item,
+.header__navbar-item-link {
+    /* vẫn giữ lại tính chất khối , nhưng nằm trên 1 hàng */
+    display: inline-block;
+    font-size: 1.4rem;
+    color: var(--white-color);
+    /* bỏ gạch chân */
+    text-decoration: none;
+    font-weight: 300;
+}
+
+.header__navbar-item,
+.header__navbar-item-link,
+.header__navbar-icon-link{
+    /* vẫn còn 1 hàng */
+    display: inline-flex;
+    align-items: center;
+}
+
+.header__navbar-item:hover,
+.header__navbar-item-link:hover,
+.header__navbar-icon-link:hover {
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+
+.header__navbar-item--strong{
+    font-weight: 400;
+}
+
+.header__navbar-item--separate::after{
+    content: "";
+    display: block;
+    position: absolute;
+    height: 16px;
+    border-left: 1px solid #FB9086;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.header__navbar-icon-link{
+    color: var(--white-color);
+    text-decoration: none;
+}
+
+.header__navbar-icon{
+    font-size: 1.8rem;
+    margin: 0 4px;
+}
+
+.header__navbar-title--no-pointer{
+    cursor: text;
+    color: var(--white-color);
+}
+
+/* Header QR code */
+.header__qr{
+    background-color: var(--white-color);
+    width: 186px;
+    position: absolute;
+    left: 0;
+    /* cao bằng 100% thẻ chứ nó (ở đây là thẻ li) */
+    top: 118%;
+    padding: 8px;
+    border-radius: 2px;
+    display: none;
+    animation: fadeIn ease-in 0.3s;
+}
+
+/* tạo ra cây cầu giữa li với mã qr để hover */
+.header__qr::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 20px; 
+    top: -16px;
+    left: 0px;
+}
+
+.header__qr-img{
+    width: 100%;
+}
+
+.header__qr-apps{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* đứa con đầu tiên */
+.header__qr-link:nth-child(1) {
+    margin-left: 11px;
+}
+
+/* đứa con thứ 2  */
+.header__qr-link:nth-child(2) {
+    margin-right: 11px;
+}
+
+.header__qr-download-img{
+    height: 16px;
+}
+
+/* Header notification */
+.header__notify{
+    position: absolute;
+    top: 118%;
+    right: 0;
+    width: 404px;
+    background-color: var(--white-color);
+    border: 1px solid #D3D3D3;
+    cursor: default;
+    /* lấy tâm */
+    /* calc(100% - 20px) ở đây là nó lấy từ trái sang phải calc(100% - 20px) ; top là giữ cho ở trên thôi */
+    transform-origin: calc(100% - 20px) top;
+    animation: headerNotifyGrowth ease-in 0.25s;
+    /* nói cho trình duyệt biết là ani (thuộc tính) nào thay đổi */
+    /* tối ưu chuyển động hơn */
+    will-change: opacity, transform ;
+    display: none;   
+}
+
+.header__notify::before {
+    content:  "";
+    border-width: 20px 27px;
+    border-style: solid;
+    position: absolute;
+    right: 4px;
+    top: -29px;
+    border-color: transparent transparent var(--white-color) transparent;
+}
+
+/* lại tạo cầu */
+.header__notify::after {
+    content:  "";
+    display: block;
+    position: absolute;
+    width: 90px;
+    right: 0 ;
+    top: -16px;
+    height: 20px;
+}
+
+@keyframes headerNotifyGrowth{
+    from {
+        opacity: 0;
+        /* scale là độ phóng to thu nhỏ */
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.header__notify-header{
+    height: 40px;
+    background-color: var(--white-color);
+    line-height: 40px;
+    /* không cho copy text lun :)))) */
+    user-select: none;
+}
+
+.header__notify-header h3{
+    color: #999;
+    margin: 0 0 0 12px;
+    font-weight: 400;
+    font-size: 1.4rem;
+}
+
+.header__notify-list{
+    padding-left: 0;
+}
+
+.header__notify-item{
+    display: flex;
+}
+
+.header__notify-item:hover{
+    background-color: #f7f7f7;
+}
+
+.header__notify-item--viewed{
+    background-color: rgba(238, 75, 43, 0.08);
+
+}
+
+.header__notify-link{
+    display: flex;
+    width: 100%;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.header__notify-img{
+    width: 48px;
+    /* giống backgr size = contai */
+    object-fit: contain;
+}
+
+.header__notify-info{
+    margin-left: 12px;
+}
+
+.header__notify-name{
+    display: block;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    font-weight: 400;
+    line-height: 1.8rem;
+}
+
+
+.header__notify-descriotion{
+    display: block;
+    font-size: 1.2rem;
+    color: #756F6E;
+    line-height: 1.8rem;
+    margin-top: 4px;
+}
+
+.header__notify-footer{
+    display: flex;
+
+}
+
+.header__notify-footer-btn{
+    text-decoration: none;   
+    color: var(--text-color);
+    padding: 8px 48px;
+    /* căn giữa khi có flex ở thẻ cha*/
+    margin: auto;
+    font-size: 1.4rem;
+    /* đậm lên */
+    font-weight: 400;
+}
+
+/* Authen Modal */
+.auth-form{
+    width: 500px;
+}
+
+.auth-form__container {
+    padding: 0 32px;
+}
+
+.auth-form__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.auth-form__heading{
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.auth-form__switch-btn {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.auth-form__input{
+    width: 100%;
+    height: 40px;
+    margin-top: 16px;
+    padding: 0 12px;
+    font-size: 1.4rem;
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    outline: none;
+}
+
+/* đổi màu khi click vào */
+.auth-form__input:focus {
+    border-color: #888;
+}
+
+.auth-form__aside{
+    margin-top: 18px;
+}
+
+.auth-form__policy-text{
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.auth-form__text-link{
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.auth-form__controls{
+    margin-top: 80px;
+}
+
+.btn {
+    
+}
