@@ -13,12 +13,96 @@
     list-style: none;
     padding-left: 0 ;
     margin: 4px 0 0 0;
+    display: flex;
 }
 
 .header__navbar-item{
     margin: 0 8px;
     position: relative;
     min-height: 26px;
+}
+
+.header__navbar-user {
+    display: flex;
+    justify-items: center;
+    position: relative;
+}
+
+.header__navbar-user-img {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.header__navbar-user-name {
+    margin-left: 4px;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.header__navbar-user:hover .header__navbar-user-menu{
+    display: block;
+}
+
+.header__navbar-user-menu {
+    position: absolute;
+    z-index: 1;
+    padding-left: 0;
+    top: calc(100% + 4px);
+    right: 0;
+    width: 160px;
+    border-radius: 2px;
+    background-color: var(--white-color);
+    box-shadow: 0 1px 2px #e0e0e0;
+    list-style: none;
+    display: none;
+}
+
+.header__navbar-user-menu::before {
+    content: "";
+    border-width: 18px 24px;
+    border-style: solid;
+    position: absolute;
+    right: 6px;
+    top: -29px;
+    border-color: transparent transparent var(--white-color) transparent;
+}
+
+.header__navbar-user-menu::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -8px;
+    right: 0;
+    width: 64%;
+    height: 8px;
+}
+
+.header__navbar-user-item a{
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    display: block;
+    padding: 6px 16px;
+}
+
+.header__navbar-user-item--separate {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.header__navbar-user-item a:first-child {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.header__navbar-user-item a:last-child {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.header__navbar-user-item a:hover {
+    background-color: #fafafa;
 }
 
 /* css đc viết ở dưới sẽ apply vào header__qr trong trường
@@ -36,7 +120,7 @@ hợp header__navbar-item--has-qr này đc hover vào*/
 .header__navbar-item-link {
     /* vẫn giữ lại tính chất khối , nhưng nằm trên 1 hàng */
     display: inline-block;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: var(--white-color);
     /* bỏ gạch chân */
     text-decoration: none;
@@ -47,7 +131,7 @@ hợp header__navbar-item--has-qr này đc hover vào*/
 .header__navbar-item-link,
 .header__navbar-icon-link{
     /* vẫn còn 1 hàng */
-    display: inline-flex;
+    display: flex;
     align-items: center;
 }
 
@@ -76,6 +160,10 @@ hợp header__navbar-item--has-qr này đc hover vào*/
 .header__navbar-icon-link{
     color: var(--white-color);
     text-decoration: none;
+}
+
+.header__navbar-icon-link:nth-child(2) {
+    margin-left: 3px;
 }
 
 .header__navbar-icon{
@@ -142,12 +230,13 @@ hợp header__navbar-item--has-qr này đc hover vào*/
     top: 118%;
     right: 0;
     width: 404px;
+    border-radius: 2px;
     background-color: var(--white-color);
-    border: 1px solid #D3D3D3;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     cursor: default;
     /* lấy tâm */
     /* calc(100% - 20px) ở đây là nó lấy từ trái sang phải calc(100% - 20px) ; top là giữ cho ở trên thôi */
-    transform-origin: calc(100% - 20px) top;
+    transform-origin: calc(100% - 32px) top;
     animation: headerNotifyGrowth ease-in 0.25s;
     /* nói cho trình duyệt biết là ani (thuộc tính) nào thay đổi */
     /* tối ưu chuyển động hơn */
@@ -413,6 +502,11 @@ hợp header__navbar-item--has-qr này đc hover vào*/
     width: 200px;
 }
 
+.header__logo-link {
+    text-decoration: none;
+    color: transparent;
+}
+
 .header__logo-img {
     width: 150px;
     color: var(--white-color);
@@ -461,6 +555,103 @@ hợp header__navbar-item--has-qr này đc hover vào*/
     box-shadow: 0 1px 3.125rem 0 rgba(0, 0, 0, 0.2) ;
     display: none;
     animation: fadeIn ease-in 0.2s;
+    cursor: default;
+}
+
+.header__cart-heading {
+    text-align: left;
+    margin: 8px 0 8px 12px;
+    font-size: 1.4rem;
+    color: #999;
+    font-weight: 400;
+}
+
+.header__cart-list-item {
+    list-style: none;
+    padding-left: 0;
+}
+
+.header__cart-item {
+    display: flex;
+    align-items: center;
+}
+
+.header__cart-item:hover {
+    background-color: #F8F8F8;
+}
+
+.header__cart-img {
+    width: 42px;
+    height: 42px;
+    margin: 12px;
+    border: 1px solid #E8E8E8;
+}
+
+.header__cart-item-info {
+    width: 100%;
+    margin-right: 12px;
+}
+
+.header__cart-item-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__cart-item-name {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.header__cart-item-price {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--primary-color);
+}
+
+.header__cart-item-multiply {
+    color: #757575;
+    font-size: 0.9rem;
+    margin: 0 4px;
+}
+
+.header__cart-item-qnt {
+    color: #757575;
+    font-size: 1.2rem;
+}
+
+.header__cart-item-body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__cart-item-deccription {
+    color: #757575;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.header__cart-item-remove {
+    color: var(--text-color);
+    font-size: 1.4rem;
+    font-weight: 400;
+
+}
+
+.header__cart-item-remove:hover {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.header__cart-view-cart {
+    float: right;
+    margin: 0 12px 12px 0;
+}
+
+.header__cart-view-cart:hover {
+    background-color: #F05D41;
 }
 
 .header__cart-list::after {
@@ -470,6 +661,7 @@ hợp header__navbar-item--has-qr này đc hover vào*/
     top: -26px;
     border-width: 16px 20px;
     border-style: solid;
+    cursor: pointer;
     border-color: transparent transparent var(--white-color) transparent;
 }
 
@@ -477,8 +669,28 @@ hợp header__navbar-item--has-qr này đc hover vào*/
     padding: 24px 0;
 }
 
+.header__cart-list--no-cart .header__cart-no-cart-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+} 
+
 .header__cart-no-cart-img {
     width: 50%;
+    display: none;
+}
+
+.header__cart-notice {
+    position: absolute;
+    padding: 1px 7px;
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    border-radius: 10px;
+    border: 2px solid #EE4D2D;
+    right: -4px;
+    top: -4px;
 }
 
 .header__search-input-wrap {
@@ -541,7 +753,7 @@ hợp header__navbar-item--has-qr này đc hover vào*/
 .header__search-option{
     position: absolute;
     right: 0;
-    top: 130%;
+    top: calc(130% - 2px);
     width: 130px;
     list-style: none;
     box-shadow: 0 1px 2px #e0e0e0;
@@ -650,4 +862,6 @@ hợp header__navbar-item--has-qr này đc hover vào*/
 .header__search-history-item:hover {
     background-color: #fafafa;
 }
+
+
 

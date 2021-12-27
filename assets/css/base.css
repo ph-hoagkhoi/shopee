@@ -23,6 +23,7 @@ html{
     box-sizing: border-box;
 }
 
+/* Responsive */
 .grid{
     width: 1200px;
     max-width: 100%;
@@ -37,6 +38,10 @@ html{
 .grid__row {
     display: flex;
     flex-wrap: wrap;
+}
+
+.grid__col {
+
 }
 
 /* animation */
@@ -87,7 +92,7 @@ html{
 
 /* Button style */
 .btn {
-    min-width: 142px;
+    min-width: 124px;
     height: 34px;
     text-decoration: none;
     border: none;
