@@ -49,7 +49,7 @@
     position: absolute;
     z-index: 1;
     padding-left: 0;
-    top: calc(100% + 4px);
+    top: calc(100% + 6px);
     right: 0;
     width: 160px;
     border-radius: 2px;
@@ -188,6 +188,8 @@ hợp header__navbar-item--has-qr này đc hover vào*/
     border-radius: 2px;
     display: none;
     animation: fadeIn ease-in 0.3s;
+    z-index: 1;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* tạo ra cây cầu giữa li với mã qr để hover */
@@ -556,6 +558,7 @@ hợp header__navbar-item--has-qr này đc hover vào*/
     display: none;
     animation: fadeIn ease-in 0.2s;
     cursor: default;
+    z-index: 1;
 }
 
 .header__cart-heading {
@@ -569,6 +572,10 @@ hợp header__navbar-item--has-qr này đc hover vào*/
 .header__cart-list-item {
     list-style: none;
     padding-left: 0;
+    /* bằng 56% chiều cao trình duyệt */
+    height: 56vh;
+    /* dài quá thì sẽ tự hiện ra thanh scroll;(y chỉ áp dụng cho trục dọc) */
+    overflow-y: auto;
 }
 
 .header__cart-item {
@@ -603,6 +610,15 @@ hợp header__navbar-item--has-qr này đc hover vào*/
     font-weight: 500;
     color: var(--text-color);
     margin: 0;
+    line-height: 2rem;
+    max-height: 4rem;
+    overflow: hidden;
+    flex: 1;
+    padding-right: 23px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-align: left;
 }
 
 .header__cart-item-price {
@@ -761,6 +777,7 @@ hợp header__navbar-item--has-qr này đc hover vào*/
     border-radius: 2px;
     display: none;
     animation: fadeIn ease-in 0.2s;
+    z-index: 1;
 }
 
 
@@ -831,6 +848,7 @@ hợp header__navbar-item--has-qr này đc hover vào*/
     box-shadow: 0 1px 5px rgb(189, 189 , 189);
     display: none;
     overflow: hidden;
+    z-index: 1;
 }
 
 .header__search-history-heading {
@@ -878,24 +896,36 @@ hợp header__navbar-item--has-qr này đc hover vào*/
 }
 
 .category__heading {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     color: var(--text-color);
-    padding: 12px 16px;
+    padding: 16px 16px 0;
     margin-top: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.category__heading-icon {
-    font-size: 1.4rem;
-    margin-right: 4px;
-    position: relative;
-    top: -1px;
+    font-weight: 600;
+    /* IN CHỮ LÊN */
+    text-transform: uppercase;
 }
 
 .category-list {
     padding: 0 0 8px 0;
     list-style: none;
-    margin-left: 9px;
+}
+
+.category-item {
+    position: relative;
+}
+
+/* ẩn border đầu tiên đi */
+.category-item:first-child::before {
+    display: none;
+}
+
+.category-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left:20px;
+    right:20px;
+    border-top: 1px solid #E1E1E1;
 }
 
 /* với ông này thì ông kia sẽ có css */
@@ -904,32 +934,16 @@ hợp header__navbar-item--has-qr này đc hover vào*/
 
 }
 
-.category-item--active .category-item__link::before {
-    content: "";
-    position: absolute;
-    border: 4px solid;
-    /* 50% của thằng chứa nó */
-    top: 50%;
-    left: 7px;
-    /* 50% của chính nó */
-    transform: translateY(calc(-50%));
-    border-color: transparent transparent transparent var(--primary-color);
-}
-
 .category-item__link {
     text-decoration: none;
     color: var(--text-color);
-    font-size: 1.5rem;
-    padding: 8px 16px;
+    font-size: 1.4rem;
+    padding: 8px 20px;
     display: block;
     position: relative;
-    /* định nghĩa chuyển động */
-    transition: right linear 0.1s;
-    right: 0;
 }
 
 .category-item__link:hover {
-    right: -4px;
     color: var(--primary-color);
 }
 
@@ -1004,3 +1018,209 @@ hợp header__navbar-item--has-qr này đc hover vào*/
 .home-filter__page-btn--disabled .home-filter__page-icon {
     color: #ccc;
 }
+
+/* Product item */
+.home-product {
+    margin-bottom: 10px;
+}
+
+.home-product-item {
+    display: block;
+    text-decoration: none;
+    background-color: var(--white-color);
+    margin-top: 10px;
+    position: relative;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    transition: transform linear 0.1s;
+    will-change: transform;
+}
+
+.home-product-item:hover {
+    transform: translateY(-1px);
+    /* độ nhòe ra 20px */
+    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.home-product-item__img {
+    /* khi dùng background img */
+    /* chiều ngang của thẻ chứa nó  */
+    padding-top: 100%;
+    /* bỏ lập */
+    background-repeat: no-repeat;
+    /* co ảnh */
+    background-size: contain;
+    /* luôn luôn tâm nằm ở giữa img */
+    background-position: top center;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.home-product-item__name {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    font-weight: 400;
+    line-height: 1.8rem;
+    margin: 10px 10px 6px;
+    /* set chiều cao cho chỉ hiện 2 dòng */
+    height: 3.6rem;
+    /* khi đối tượng con trồi ra khỏi cha thì chúng ta làm gì  */
+    /* ẩn đi */
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    /* hướng dòng chữ */
+    -webkit-box-orient: vertical;
+    /* set số dòng */
+    -webkit-line-clamp: 2;
+}
+
+.home-product-item__price {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+
+}
+
+.home-product-item__price-old {
+    font-size: 1.4rem;
+    margin-left: 10px;
+    color: #666;
+    /* gạch giữa chữ */
+    text-decoration: line-through;
+
+}
+
+.home-product-item__price-current {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-left: 10px;
+}
+.home-product-item__action {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 10px 0;
+}
+
+.home-product-item__like {
+    font-size: 1.3rem;
+}
+
+i.home-product-item__like-icon-fill {
+    display: none;
+    color: #F63D30;
+}
+
+.home-product-item__like--liked .home-product-item__like-icon-fill {
+    display: inline-block;
+}
+
+.home-product-item__like--liked .home-product-item__like-icon-empty {
+    display: none;
+}
+
+.home-product-item__rating {
+    font-size: 0.7rem;
+    color: #D5D5D5;
+    /* ngôi sao dính sang bên phải với đã bán */
+    margin-left: auto;
+}
+
+.home-product-item__star--gold {
+    color: var(--star-gold-color);
+}
+
+.home-product-item__sold {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-left: 6px;
+}
+
+.home-product-item__origin {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 10px 0;
+    color: #595959;
+    font-size: 1.2rem;
+    font-weight: 300;
+    padding-bottom: 10px;
+}
+
+.home-product-item__favourite {
+    position: absolute;
+    top: 10px;
+    left: -4px;
+    color: var(--primary-color);    
+    /* ăn theo màu hiện tại của khối này */
+    background-color: currentColor;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.6rem;
+    padding-right: 4px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.home-product-item__favourite::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    /* nó ăn màu ở trên từ thằng ở trên */
+    border-top: 3px solid currentColor;
+    border-left: 3px solid transparent;
+    /* vẫn giữ tông màu nhưng tối hơn */
+    filter: brightness(60%);
+}
+
+.home-product-item__favourite span {
+    color: var(--white-color);
+}
+
+.home-product-item__favourite i {
+    color: var(--white-color);
+    font-size: 0.9rem;
+    margin: 0 2px 0 5px;
+}
+
+
+.home-product-item__sale-off {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 36px;
+    background-color: rgba(255, 216, 64, 0.94);
+    text-align: center;
+    border-top-right-radius: 2px;
+}
+
+.home-product-item__sale-off::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    border-width: 0 20px 4px;
+    border-style: solid;
+    color: rgba(255, 216, 64, 0.94);
+    border-color: transparent currentColor transparent currentColor;
+}
+
+.home-product-item__sale-off-percent {
+    color: #EE4D2D;
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    position: relative;
+    top: 4px;
+}
+
+.home-product-item__sale-off-label {
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    color: var(--white-color);
+    position: relative;
+    top: 2px;
+    font-weight: 600;
+}
+
